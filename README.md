@@ -1,6 +1,9 @@
 # Generalized Gradient Bandit Algorithm (GGBA)
 
-The Generalized Gradient Bandit Algorithm extends the Gradient Bandit algorithm to include a variety of smooth functions for preference updating.
+We aim to investigate how different smooth functions \( \psi \) (variants of Smooth ReLU) affect the performance of the Gradient Bandit algorithm on multi-armed bandits for various learning rates \( \alpha \). 
+
+We also want to identify which \( \alpha \) balances exploration and exploitation most effectively, and to see how \( \ln^n(1+e^x) \) compares with the standard \( e^x \) approach.
+
 
 ## Algorithm Description
 
