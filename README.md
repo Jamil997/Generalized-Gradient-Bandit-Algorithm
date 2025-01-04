@@ -52,7 +52,8 @@ These alternatives grow more gradually than the exponential function, potentiall
 
 Refer to the following figures in the project repository for detailed visual results:
 
-[Generalized-Gradient-Bandit-Algorithm]([https://github.com/username/Generalized-Gradient-Bandit-Algorithm/blob/main/gradient_bandit.ipynb](https://github.com/Jamil997/Generalized-Gradient-Bandit-Algorithm/blob/main/gradient_bandit.ipynb))
+[Generalized-Gradient-Bandit-Algorithm](https://github.com/Jamil997/Generalized-Gradient-Bandit-Algorithm/blob/main/gradient_bandit.ipynb)
+
 
 
 
