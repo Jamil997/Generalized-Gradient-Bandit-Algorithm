@@ -50,12 +50,9 @@ These alternatives grow more gradually than the exponential function, potentiall
 
 ## Visual Results
 
-Please refer to the following figures in the project repository for detailed visual results:
+Refer to the following figures in the project repository for detailed visual results:
 
-- **Figure 1:** Comparison of smooth functions' growth curves.
-- **Figure 2:** Performance trends for the percentage of optimal actions over time.
-- **Figure 3:** Performance trends for average rewards over time.
-- **Figure 4:** Summary of average rewards across learning rates.
-- **Figure 5:** Summary of optimal action percentages across learning rates.
+[Generalized-Gradient-Bandit-Algorithm](https://github.com/username/Generalized-Gradient-Bandit-Algorithm/blob/main/gradient_bandit.ipynb)
+
 
 
