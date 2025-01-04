@@ -1,53 +1,61 @@
 # Generalized Gradient Bandit Algorithm (GGBA)
 
-We aim to investigate how different smooth functions \( \psi \) (variants of Smooth ReLU) affect the performance of the Gradient Bandit algorithm on multi-armed bandits for various learning rates \( \alpha \). 
+The Generalized Gradient Bandit Algorithm extends the Gradient Bandit approach by incorporating different smooth functions to update preferences more flexibly.
 
-We also want to identify which \( \alpha \) balances exploration and exploitation most effectively, and to see how \( \ln^n(1+e^x) \) compares with the standard \( e^x \) approach.
+## Objective
 
+The study investigates how different smooth functions, inspired by Smooth ReLU variants, impact the performance of the Gradient Bandit algorithm in multi-armed bandit problems. The focus is on finding the optimal balance between exploration (trying new actions) and exploitation (choosing the best-known action) across various learning rates. The study also compares alternative logarithmic-based functions to the standard exponential function.
 
 ## Algorithm Description
 
-Given **k** unknown reward distributions \( P₁, P₂, …, Pₖ \) with true values \( qₐ = E[X \sim Pₐ] \), the algorithm updates preferences \( Hₜ = [Hₜ(a)] \) via:
+The algorithm updates action preferences based on observed rewards and feedback. Traditionally, an exponential function is used to determine action probabilities. This study replaces the exponential function with alternative smoothing methods:
 
-Hₜ₊₁ = Hₜ + αgₜ
+1. A simple logarithmic function.
+2. A squared logarithmic function.
+3. A cubic logarithmic function.
 
-where
-
-gₜ(a) = (Rₜ − R̄ₜ) ⋅ ψ′(Hₜ(a)) / ψ(Hₜ(a)) ⋅ (1[Aₜ = a] − πₜ(a))
-
-and
-
-πₜ(a) ∝ ψ(Hₜ(a)).
-
-For **ψ(x) = exp(x)**, this reduces to the standard Gradient Bandit algorithm. In our project, we replace **exp(x)** with the following smooth functions:
-1. ψ(x) = ln(1 + exp(x))
-2. ψ(x) = ln²(1 + exp(x))
-3. ψ(x) = ln³(1 + exp(x))
+These alternatives grow more gradually than the exponential function, potentially offering better control over the preference updates.
 
 ---
 
-## Stages of the Project
+## Stages of the Study
 
 ### 1. Comparing Smooth Functions
-- We compared the growth curves for exp(x), ln(1 + exp(x)), ln²(1 + exp(x)), and ln³(1 + exp(x)).
-- Higher powers of ln(1 + exp(x)) steepen the growth rate, making the behavior closer to exp(x).
+- The smooth functions were plotted to compare their growth rates.
+- Higher-order logarithmic functions exhibit steeper growth curves, behaving more like the exponential function.
+- **(Refer to Figure 1 for a detailed comparison of these curves.)**
 
 ### 2. Running the Algorithm
-- The algorithm was run for each ψ function over **10-armed bandits**.
-- Learning rates (α) used: {1, 1/2, 1/4, 1/8, 1/16, 1/32}.
-- Results include:
-  1. **% Optimal actions vs. Time steps**
-  2. **Average reward vs. Time steps**
-- Observations: Intermediate α values (e.g., 1/4 or 1/8) balance exploration and exploitation best.
+- The algorithm was tested on a simulated 10-armed bandit environment.
+- Various learning rates, such as 1, 1/2, 1/4, 1/8, 1/16, and 1/32, were evaluated for each smooth function.
+- Performance was assessed using two key metrics:
+  1. The percentage of optimal actions selected over time.
+  2. The average reward obtained over time.
+- **(Refer to Figures 2 and 3 for plots of performance trends across time steps.)**
 
 ### 3. Consolidated Results
-- Smaller α values under-learn.
-- Larger α values destabilize the algorithm.
-- Best performance is typically achieved at α = 1/4 or α = 1/8.
+- Smaller learning rates adapted too slowly, leading to underperformance.
+- Larger learning rates destabilized the algorithm, causing erratic behavior.
+- Intermediate learning rates, particularly 1/4 and 1/8, offered the best balance between exploration and exploitation.
+- **(Refer to Figures 4 and 5 for visual summaries of average rewards and optimal action percentages across learning rates.)**
 
 ---
 
 ## Conclusion
-- α = 1/4 achieves the **highest average reward** and **highest % of optimal actions**.
-- ψ(x) functions (ln(1 + exp(x)), ln²(1 + exp(x)), ln³(1 + exp(x))) behave similarly but differ slightly in convergence speed and final performance.
+- Learning rates of approximately 1/4 provided the best overall performance, achieving higher average rewards and a greater percentage of optimal actions.
+- The alternative smooth functions performed similarly to the standard exponential function but differed slightly in how quickly they converged to the optimal solution and their final performance levels.
+- These results suggest that logarithmic smoothing functions are viable alternatives to the exponential approach.
+
+---
+
+## Visual Results
+
+Please refer to the following figures in the project repository for detailed visual results:
+
+- **Figure 1:** Comparison of smooth functions' growth curves.
+- **Figure 2:** Performance trends for the percentage of optimal actions over time.
+- **Figure 3:** Performance trends for average rewards over time.
+- **Figure 4:** Summary of average rewards across learning rates.
+- **Figure 5:** Summary of optimal action percentages across learning rates.
+
 
