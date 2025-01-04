@@ -1,27 +1,26 @@
-
 # Generalized Gradient Bandit Algorithm (GGBA)
 
-We aim to investigate how different smooth functions \(\psi\) (variants of Smooth ReLU) affect the performance of the Gradient Bandit algorithm on multi-armed bandits for various learning rates \(\alpha\). The goal is to identify which \(\alpha\) balances exploration and exploitation most effectively, and to see how \(\ln^n(1+e^x)\) compares with the standard \(e^x\) approach.
+The Generalized Gradient Bandit Algorithm extends the Gradient Bandit algorithm to include a variety of smooth functions for preference updating. 
 
 ## Algorithm Description
 
 Given **k** unknown reward distributions \( P_1, P_2, \ldots, P_k \) with true values \( q_*(a) = \mathbb{E}_{X \sim P_a}[X] \), the algorithm updates preferences \( H_t = [H_t(a)]_{a=1}^k \) via:
 
-\[
+$$
 H_{t+1} = H_t + \alpha \, g_t,
-\]
+$$
 
 where
 
-\[
+$$
 g_t(a) = (R_t - \bar{R}_t) \cdot \frac{\psi'(H_t(a))}{\psi(H_t(a))} \left( \mathbb{1}[A_t = a] - \pi_t(a) \right),
-\]
+$$
 
 and 
 
-\[
+$$
 \pi_t(a) \propto \psi(H_t(a)).
-\]
+$$
 
 For \( \psi(x) = e^x \), this reduces to the standard Gradient Bandit algorithm.
 
@@ -60,3 +59,15 @@ In our project, we replace \( e^x \) with alternative smooth functions:
 ## Conclusion
 - \( \alpha = 1/4 \) achieves the **highest average reward** and **highest % of optimal actions**.
 - Different \( \psi \) functions (\( \ln(1 + e^x) \), \( \ln^2(1 + e^x) \), \( \ln^3(1 + e^x) \)) perform similarly in overall behavior but differ slightly in convergence speed and final performance.
+
+---
+
+## Enabling MathJax on GitHub Pages
+
+To render the mathematical equations correctly on a GitHub Pages website, include the following MathJax `<script>` tag in your HTML or Markdown file:
+
+```html
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js">
+</script>
+
